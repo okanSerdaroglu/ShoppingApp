@@ -5,7 +5,18 @@
     <dimen name="margin_12">12dp</dimen>
     <dimen name="margin_8">8dp</dimen>
     <dimen name="margin_4">4dp</dimen>
-    <dimen name="margin_20">20dp</dimen>
     <dimen name="margin_50">50dp</dimen>
     <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_60">60sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="margin_120">120dp</dimen>
+    <dimen name="margin_190">190dp</dimen>
+
+    <dimen name="margin_80">80dp</dimen>
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_60">60dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_70">70dp</dimen>
+    <dimen name="text_size_40">40sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
 </resources>

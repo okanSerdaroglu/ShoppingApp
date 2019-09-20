@@ -7,5 +7,9 @@
     <color name="colorWhite">#FAFAFA</color>
     <color name="colorDarkRed">#a30700</color>
     <color name="colorRedDisabled">#e1e4ea</color>
+    <color name="colorGrey">#BDBDBD</color>
+    <color name="colorDarkGrey">#424242</color>
+    <color name="colorYellow">#F9A825</color>
+    <color name="colorSoftGrey">#E0E0E0</color>
 
 </resources>

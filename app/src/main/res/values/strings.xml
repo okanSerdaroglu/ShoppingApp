@@ -7,4 +7,5 @@
     <string name="button_confirm">Giriş</string>
     <string name="my_orders">Siparişlerim</string>
     <string name="log_out">Çıkış Yap</string>
+    <string name="next_icon">next icon</string>
 </resources>
