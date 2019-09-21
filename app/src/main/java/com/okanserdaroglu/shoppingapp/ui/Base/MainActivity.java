@@ -1,6 +1,8 @@
-package com.okanserdaroglu.shoppingapp;
+package com.okanserdaroglu.shoppingapp.ui.Base;
 
 import android.os.Bundle;
+
+import com.okanserdaroglu.shoppingapp.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
