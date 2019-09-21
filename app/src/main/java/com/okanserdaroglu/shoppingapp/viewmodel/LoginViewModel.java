@@ -26,6 +26,17 @@ public class LoginViewModel extends ViewModel {
 
     private boolean isRemember;
 
+    public void setUsername(MutableLiveData<String> username) {
+        this.username = username;
+    }
+
+    public void setPassword(MutableLiveData<String> password) {
+        this.password = password;
+    }
+
+    public void setRemember(boolean remember) {
+        isRemember = remember;
+    }
 
     public MutableLiveData<String> getUsername() {
         return username;

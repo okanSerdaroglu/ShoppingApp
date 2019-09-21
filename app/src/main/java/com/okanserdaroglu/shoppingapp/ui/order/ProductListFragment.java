@@ -1,25 +1,37 @@
 package com.okanserdaroglu.shoppingapp.ui.order;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.okanserdaroglu.shoppingapp.R;
+import com.okanserdaroglu.shoppingapp.databinding.FragmentProductListBinding;
+import com.okanserdaroglu.shoppingapp.ui.Base.BaseFragment;
+import com.okanserdaroglu.shoppingapp.viewmodel.ProductListViewModel;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.ViewModelProviders;
 
-public class ProductListFragment extends Fragment {
+public class ProductListFragment extends BaseFragment {
 
+    private ProductListViewModel productListViewModel;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_product_list,container,false);
-
+    protected int getLayoutId() {
+        return R.layout.fragment_product_list;
     }
 
+    @Override
+    protected void onBind(ViewDataBinding binding, Bundle bundle) {
+        productListViewModel = ViewModelProviders.of(this).get(ProductListViewModel.class);
+        FragmentProductListBinding fragmentProductListBinding =
+                (FragmentProductListBinding) binding;
+        fragmentProductListBinding.setLifecycleOwner(this);
+        fragmentProductListBinding.setProductListViewModel(productListViewModel);
+        productListViewModel.getOrderList();
+
+        //initProductListLiveData();
+    }
+
+    private void initProductListLiveData() {
+
+    }
 }

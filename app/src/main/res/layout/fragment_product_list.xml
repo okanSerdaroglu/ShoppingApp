@@ -1,91 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayoutHeader"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="productListViewModel"
+            type="com.okanserdaroglu.shoppingapp.viewmodel.ProductListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/margin_50"
-        android:background="@color/colorRed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_title"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_size_20"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutHeader"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_50"
+            android:background="@color/colorRed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewProductList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="@dimen/margin_8"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutLogOut"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutHeader" />
-
-
-    <LinearLayout
-        android:id="@+id/linearLayoutLogOut"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/margin_50"
-        android:layout_margin="@dimen/margin_8"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:id="@+id/linearLayoutMyProducts"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/margin_4"
-            android:layout_weight="1"
-            android:background="@drawable/bg_border_red"
-            android:gravity="center">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/my_orders"
-                android:textColor="@color/colorRed"
-                android:textSize="@dimen/text_size_16" />
+                android:text="@string/login_title"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_size_20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProductList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/margin_8"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutLogOut"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutHeader" />
+
 
         <LinearLayout
-            android:id="@+id/linearLayoutLogOutApp"
+            android:id="@+id/linearLayoutLogOut"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/margin_4"
-            android:layout_weight="1"
-            android:background="@drawable/bg_border_red">
+            android:layout_height="@dimen/margin_50"
+            android:layout_margin="@dimen/margin_8"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/linearLayoutMyProducts"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorRed"
-                android:gravity="center"
-                android:text="@string/log_out"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/text_size_16" />
+                android:layout_marginEnd="@dimen/margin_4"
+                android:layout_weight="1"
+                android:background="@drawable/bg_border_red"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_orders"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/text_size_16" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutLogOutApp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin_4"
+                android:layout_weight="1"
+                android:background="@drawable/bg_border_red">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorRed"
+                    android:gravity="center"
+                    android:text="@string/log_out"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_size_16" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</layout>
+

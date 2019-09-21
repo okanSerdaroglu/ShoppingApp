@@ -4,12 +4,12 @@ import com.okanserdaroglu.shoppingapp.model.Order;
 
 import java.util.List;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 public interface NetworkService {
 
     @GET(".")
-    Call<List<Order>> getOrderList();
+    Observable<List<Order>> getOrderList();
 
 }
