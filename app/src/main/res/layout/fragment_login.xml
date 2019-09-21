@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
 
+        <variable
+            name="loginViewModel"
+            type="com.okanserdaroglu.shoppingapp.viewmodel.LoginViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,6 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/margin_40"
             android:layout_marginTop="@dimen/margin_20"
+            android:onClick="@{loginViewModel::onLoginButtonClick}"
             android:text="@string/button_confirm"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayoutPassword"
             app:layout_constraintStart_toStartOf="@+id/textInputLayoutPassword"
@@ -46,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_4"
+            android:checked="@={loginViewModel.remember}"
             app:layout_constraintStart_toStartOf="@+id/textInputLayoutPassword"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
 
@@ -54,6 +61,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_4"
+            app:errorMessage="@{loginViewModel.errorMessage}"
+            app:isErrorVisible="@{loginViewModel.isPasswordError}"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayoutUsername"
             app:layout_constraintStart_toStartOf="@+id/textInputLayoutUsername"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutUsername">
@@ -63,7 +72,8 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_lock"
                 android:hint="@string/password"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:text="@={loginViewModel.password}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -71,6 +81,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_12"
+            app:errorMessage="@{loginViewModel.errorMessage}"
+            app:isErrorVisible="@{loginViewModel.isUsernameError}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +93,8 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_username"
                 android:hint="@string/username"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:text="@={loginViewModel.username}" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,4 +8,8 @@
     <string name="my_orders">Siparişlerim</string>
     <string name="log_out">Çıkış Yap</string>
     <string name="next_icon">next icon</string>
+    <string name="username_error">Geçersiz kullanıcı adı</string>
+    <string name="password_error">Geçersiz parola</string>
+    <string name="username_value">kariyer</string>
+    <string name="password_value">2019ADev</string>
 </resources>
