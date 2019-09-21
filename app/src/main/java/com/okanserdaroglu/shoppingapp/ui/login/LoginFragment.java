@@ -1,25 +1,26 @@
 package com.okanserdaroglu.shoppingapp.ui.login;
 
+
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.okanserdaroglu.shoppingapp.R;
+import com.okanserdaroglu.shoppingapp.databinding.FragmentLoginBinding;
+import com.okanserdaroglu.shoppingapp.ui.Base.BaseFragment;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.databinding.ViewDataBinding;
 
-public class LoginFragment extends Fragment {
 
-    @Nullable
+public class LoginFragment extends BaseFragment {
+
+    private FragmentLoginBinding fragmentLoginBinding;
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_login, container, false);
-
+    protected int getLayoutId() {
+        return R.layout.fragment_login;
     }
 
+    @Override
+    protected void onBind(ViewDataBinding binding, Bundle bundle) {
+        fragmentLoginBinding = (FragmentLoginBinding) binding;
+    }
 }
