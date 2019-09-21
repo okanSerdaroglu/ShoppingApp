@@ -1,23 +1,27 @@
 package com.okanserdaroglu.shoppingapp.ui.login;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.okanserdaroglu.shoppingapp.R;
+import com.okanserdaroglu.shoppingapp.helper.SharedPreferenceHelper;
+import com.okanserdaroglu.shoppingapp.ui.Base.BaseFragment;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.databinding.ViewDataBinding;
+import androidx.navigation.fragment.NavHostFragment;
 
-public class SplashFragment extends Fragment {
+public class SplashFragment extends BaseFragment {
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_splash, container, false);
-
+    protected int getLayoutId() {
+        return R.layout.fragment_splash;
     }
 
+    @Override
+    protected void onBind(ViewDataBinding binding, Bundle bundle) {
+        if (SharedPreferenceHelper.getInstance().getBoolean(SharedPreferenceHelper.IS_LOGIN)) {
+            NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_productListFragment);
+        } else {
+            NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_loginFragment);
+        }
+    }
 }

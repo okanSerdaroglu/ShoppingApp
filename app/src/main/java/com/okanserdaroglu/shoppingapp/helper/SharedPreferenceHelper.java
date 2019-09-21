@@ -13,10 +13,10 @@ public class SharedPreferenceHelper {
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
 
-    private static final String IS_LOGIN = "is_login";
-    private static final String IS_REMEMBER = "is_remember";
-    private static final String USERNAME = "username";
-    private static final String PASSWORD = "password";
+    public static final String IS_LOGIN = "is_login";
+    public static final String IS_REMEMBER = "is_remember";
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
 
     private SharedPreferenceHelper() {}
 
