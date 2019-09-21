@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.okanserdaroglu.shoppingapp.model.Order;
 import com.okanserdaroglu.shoppingapp.remote.NetworkInstance;
+import com.okanserdaroglu.shoppingapp.ui.order.adapter.ProductListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,10 @@ public class ProductListViewModel extends ViewModel {
     private MutableLiveData<Boolean>isOrderButtonClicked = new MutableLiveData<>();
     private MutableLiveData<Boolean>isLogOutButtonClicked = new MutableLiveData<>();
 
+    private ProductListAdapter productListAdapter;
 
+    /** retrofit ile datayı çek. Sonra gelen orderList i productViewModel a dönüştür.
+     *  */
     public void getOrderList() {
         Observable<List<Order>> orderList = NetworkInstance.getInstance().getNetworkService().getOrderList();
        /* Observable.fromArray(orderList)
@@ -29,17 +33,21 @@ public class ProductListViewModel extends ViewModel {
                 .subscribe(this::setAdapter);*/
     }
 
-    private List<ProductItemViewModel> getViewModel(List<Order> orders){
+    private void getViewModel(List<Order> orders){
         List<ProductItemViewModel> productItemViewModels = new ArrayList<>();
         for (Order order : orders) {
             ProductItemViewModel productItemViewModel = new ProductItemViewModel();
             productItemViewModel.setOrder(order);
             productItemViewModels.add(productItemViewModel);
         }
-        return productItemViewModels;
+        productViewModels.setValue(productItemViewModels);
+        // TODO: 2019-09-21 fragment buna observe olup set adapter metodunu çağıracak
     }
 
     private void setAdapter(List<ProductListViewModel> productListViewModels) {
-
+        if (productListAdapter == null){
+            productListAdapter = new ProductListAdapter();
+        }
+        productListAdapter.setItems(productViewModels);
     }
 }

@@ -20,7 +20,7 @@ public abstract class BaseRecyclerViewAdapter<T, V extends BaseViewHolder<T>> ex
     public BaseRecyclerViewAdapter() {
     }
 
-    protected void setItems(MutableLiveData<List<T>> items) {
+    public void setItems(MutableLiveData<List<T>> items) {
         this.items = items;
         notifyDataSetChanged();
     }
