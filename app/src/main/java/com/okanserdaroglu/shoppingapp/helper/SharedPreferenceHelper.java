@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.okanserdaroglu.shoppingapp.ui.Base.ShoppingApplication;
+
+/** Shared preferences singleton */
+
 public class SharedPreferenceHelper {
     private static SharedPreferenceHelper sharedPreferenceHelper;
     private static SharedPreferences sharedPreferences;
@@ -14,16 +18,13 @@ public class SharedPreferenceHelper {
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
 
+    private SharedPreferenceHelper() {}
 
-
-    private SharedPreferenceHelper() {
-    } //prevent creating multiple instances by making the constructor private
-
-    //The context passed into the getInstance should be application level context.
-    public static SharedPreferenceHelper getInstance(Context context) {
+    public static SharedPreferenceHelper getInstance() {
         if (sharedPreferenceHelper == null) {
             sharedPreferenceHelper = new SharedPreferenceHelper();
             if (sharedPreferences == null) {
+                Context context = ShoppingApplication.getShoppingApplication().getApplicationContext();
                 sharedPreferences = context.getSharedPreferences(context.getPackageName(), Activity.MODE_PRIVATE);
             }
         }
