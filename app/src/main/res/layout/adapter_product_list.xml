@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="androidx.core.content.ContextCompat"/>
+
+        <import type="androidx.core.content.ContextCompat" />
 
         <variable
             name="productItemViewModel"
@@ -13,152 +14,138 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{productItemViewModel::onClickOrder}"
+        android:tag="@{productItemViewModel.position}">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutProduct"
+        <TextView
+            android:id="@+id/textViewDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{productItemViewModel.order.date}"
+            android:textSize="@dimen/text_size_40"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/viewSeparator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/viewSeparator" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{productItemViewModel.monthName}"
+            android:textSize="@dimen/text_size_12"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/viewSeparator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDay" />
+
+
+        <View
+            android:id="@+id/viewSeparator"
+            android:layout_width="2dp"
+            android:layout_height="@dimen/margin_80"
+            android:layout_marginStart="@dimen/margin_70"
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@color/colorGrey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewMarketName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:text="@{productItemViewModel.order.marketName}"
+            android:textColor="@color/colorDarkGrey"
+            android:textSize="@dimen/text_size_14"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/viewSeparator"
+            app:layout_constraintTop_toTopOf="@+id/viewSeparator" />
+
+        <TextView
+            android:id="@+id/textViewOrderName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@{productItemViewModel.order.orderName}"
+            app:layout_constraintBottom_toTopOf="@id/viewState"
+            app:layout_constraintEnd_toStartOf="@id/textViewPrice"
+            app:layout_constraintStart_toStartOf="@+id/textViewMarketName"
+            app:layout_constraintTop_toBottomOf="@id/textViewMarketName" />
+
+        <View
+            android:id="@+id/viewState"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@{ContextCompat.getColor(context, productItemViewModel.orderStateColor)}"
+            app:layout_constraintBottom_toBottomOf="@id/viewSeparator"
+            app:layout_constraintStart_toStartOf="@id/textViewMarketName"
+            tools:background="@color/colorYellow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:text="@{productItemViewModel.order.productState}"
+            android:textColor="@{ContextCompat.getColor(context,productItemViewModel.orderStateColor)}"
+            app:layout_constraintBottom_toBottomOf="@id/viewState"
+            app:layout_constraintStart_toEndOf="@id/viewState"
+            app:layout_constraintTop_toTopOf="@id/viewState" />
+
+        <ImageView
+            android:id="@+id/imageViewNextIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:contentDescription="@string/next_icon"
+            android:src="@drawable/ic_navigate_next"
+            app:layout_constraintBottom_toBottomOf="@id/textViewMarketName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewMarketName" />
+
+        <TextView
+            android:id="@+id/textViewPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{productItemViewModel.productPrice}"
+            android:textColor="@color/colorDarkGrey"
+            android:textSize="@dimen/text_size_14"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewOrderName"
+            app:layout_constraintEnd_toEndOf="@id/imageViewNextIcon"
+            app:layout_constraintTop_toTopOf="@+id/textViewOrderName" />
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            isAnimate="@{productItemViewModel.expandedAnimate}"
+            isExpand="@{productItemViewModel.expanded}"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_190"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/textViewDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{productItemViewModel.order.date}"
-                android:textSize="@dimen/text_size_40"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/viewSeparator"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/viewSeparator" />
-
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@{productItemViewModel.monthName}"
-                android:textSize="@dimen/text_size_12"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/viewSeparator"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDay" />
-
-
-            <View
-                android:id="@+id/viewSeparator"
-                android:layout_width="2dp"
-                android:layout_height="@dimen/margin_80"
-                android:layout_marginStart="@dimen/margin_70"
-                android:layout_marginTop="@dimen/margin_20"
-                android:background="@color/colorGrey"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textViewMarketName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_8"
-                android:text="@{productItemViewModel.order.marketName}"
-                android:textColor="@color/colorDarkGrey"
-                android:textSize="@dimen/text_size_14"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/viewSeparator"
-                app:layout_constraintTop_toTopOf="@+id/viewSeparator" />
-
-            <TextView
-                android:id="@+id/textViewOrderName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="@{productItemViewModel.order.orderName}"
-                app:layout_constraintBottom_toTopOf="@id/viewState"
-                app:layout_constraintEnd_toStartOf="@id/textViewPrice"
-                app:layout_constraintStart_toStartOf="@+id/textViewMarketName"
-                app:layout_constraintTop_toBottomOf="@id/textViewMarketName" />
-
-            <View
-                android:id="@+id/viewState"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@{ContextCompat.getColor(context, productItemViewModel.orderStateColor)}"
-                app:layout_constraintBottom_toBottomOf="@id/viewSeparator"
-                app:layout_constraintStart_toStartOf="@id/textViewMarketName"
-                tools:background="@color/colorYellow" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_12"
-                android:textColor="@{ContextCompat.getColor(context,productItemViewModel.orderStateColor)}"
-                android:text="@{productItemViewModel.order.productState}"
-                app:layout_constraintStart_toEndOf="@id/viewState"
-                app:layout_constraintTop_toTopOf="@id/viewState"
-                app:layout_constraintBottom_toBottomOf="@id/viewState"/>
-
-            <ImageView
-                android:id="@+id/imageViewNextIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_8"
-                android:contentDescription="@string/next_icon"
-                android:src="@drawable/ic_navigate_next"
-                app:layout_constraintBottom_toBottomOf="@id/textViewMarketName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textViewMarketName" />
-
-            <TextView
-                android:id="@+id/textViewPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{productItemViewModel.productPrice}"
-                android:textColor="@color/colorDarkGrey"
-                android:textSize="@dimen/text_size_14"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewOrderName"
-                app:layout_constraintEnd_toEndOf="@id/imageViewNextIcon"
-                app:layout_constraintTop_toTopOf="@+id/textViewOrderName" />
-
-            <androidx.constraintlayout.widget.Group
-                android:id="@+id/constraintLayoutProductDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:constraint_referenced_ids="constraintLayoutProductDetailLeft,constraintLayoutProductDetailRight" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayoutProductDetailLeft"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:background="@color/colorSoftGrey"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/viewSeparator"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewDay">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/viewState">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayoutProductDetailRight"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/colorSoftGrey"
-                app:layout_constraintBottom_toBottomOf="@id/constraintLayoutProductDetailLeft"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/constraintLayoutProductDetailLeft"
-                app:layout_constraintTop_toTopOf="@+id/constraintLayoutProductDetailLeft">
+                android:paddingTop="@dimen/margin_8"
+                android:paddingBottom="@dimen/margin_8">
 
                 <TextView
+                    android:layout_marginEnd="@dimen/margin_40"
                     android:id="@+id/textViewProductDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_8"
                     android:text="@{productItemViewModel.order.productDetail.orderDetail}"
                     android:textSize="@dimen/text_size_14"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewPriceDetail"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -174,7 +161,7 @@
                     app:layout_constraintTop_toTopOf="@+id/textViewProductDetail" />
 
                 <View
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="@dimen/margin_2"
                     android:background="@color/colorGrey"
                     app:layout_constraintEnd_toEndOf="@id/textViewPriceDetail"
@@ -182,12 +169,6 @@
                     app:layout_constraintTop_toBottomOf="@id/textViewProductDetail" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+        </net.cachapa.expandablelayout.ExpandableLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>

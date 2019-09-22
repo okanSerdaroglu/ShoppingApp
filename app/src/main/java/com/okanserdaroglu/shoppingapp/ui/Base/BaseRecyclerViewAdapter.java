@@ -17,7 +17,7 @@ public abstract class BaseRecyclerViewAdapter<T, V extends BaseViewHolder<T>> ex
 
     private MutableLiveData<List<T>> items = new MutableLiveData<>();
 
-    BaseRecyclerViewAdapter() {
+    public BaseRecyclerViewAdapter() {
     }
 
     public void setItems(MutableLiveData<List<T>> items) {

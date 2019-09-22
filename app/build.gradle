@@ -50,6 +50,9 @@ dependencies {
     // material components
     implementation 'com.google.android.material:material:1.0.0'
 
+    //expandable view
+    implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
+
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
