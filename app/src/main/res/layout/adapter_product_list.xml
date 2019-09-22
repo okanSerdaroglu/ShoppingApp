@@ -141,10 +141,9 @@
                     android:id="@+id/textViewProductDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_8"
                     android:text="@{productItemViewModel.order.productDetail.orderDetail}"
                     android:textSize="@dimen/text_size_14"
-                    app:layout_constraintEnd_toStartOf="@+id/textViewPriceDetail"
+                    app:layout_constraintStart_toStartOf="@+id/viewLine"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -161,11 +160,13 @@
                     app:layout_constraintTop_toTopOf="@+id/textViewProductDetail" />
 
                 <View
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="@dimen/margin_2"
                     android:background="@color/colorGrey"
+                    android:id="@+id/viewLine"
+                    android:layout_marginStart="@dimen/margin_78"
                     app:layout_constraintEnd_toEndOf="@id/textViewPriceDetail"
-                    app:layout_constraintStart_toStartOf="@id/textViewProductDetail"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textViewProductDetail" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
