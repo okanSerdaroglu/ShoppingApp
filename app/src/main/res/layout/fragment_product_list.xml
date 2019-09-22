@@ -14,92 +14,54 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutHeader"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewHeader"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_50"
             android:background="@color/colorRed"
+            android:gravity="center|center"
+            android:text="@string/login_title"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_20"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_title"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/text_size_20"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            setAdapter="@{productListViewModel.productListAdapter}"
             android:id="@+id/recyclerViewProductList"
+            setAdapter="@{productListViewModel.productListAdapter}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="@dimen/margin_8"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayoutLogOut"
+            app:layout_constraintBottom_toTopOf="@+id/buttonOrder"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutHeader" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewHeader" />
 
-
-        <LinearLayout
-            android:id="@+id/linearLayoutLogOut"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonOrder"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="0dp"
-            android:layout_height="@dimen/margin_50"
-            android:layout_margin="@dimen/margin_8"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:weightSum="2"
+            android:layout_height="wrap_content"
+            android:onClick="@{productListViewModel::onOrdersButtonClick}"
+            android:text="@string/my_orders"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonExit"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonExit"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{productListViewModel::onExitButtonClick}"
+            android:text="@string/log_out"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonOrder"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <LinearLayout
-                android:id="@+id/linearLayoutMyProducts"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/margin_4"
-                android:layout_weight="1"
-                android:background="@drawable/bg_border_red"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/my_orders"
-                    android:textColor="@color/colorRed"
-                    android:textSize="@dimen/text_size_16" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayoutLogOutApp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/margin_4"
-                android:layout_weight="1"
-                android:background="@drawable/bg_border_red">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorRed"
-                    android:gravity="center"
-                    android:text="@string/log_out"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/text_size_16" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+            app:layout_constraintStart_toEndOf="@+id/buttonOrder"
+            app:layout_constraintTop_toTopOf="@+id/buttonOrder" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

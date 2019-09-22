@@ -24,19 +24,23 @@ public class LoginFragment extends BaseFragment {
         return R.layout.fragment_login;
     }
 
-    /** create viewModel instance and set binding*/
+    /**
+     * create viewModel instance and set binding
+     */
     @Override
     protected void onBind(ViewDataBinding binding, Bundle bundle) {
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         FragmentLoginBinding fragmentLoginBinding = (FragmentLoginBinding) binding;
         fragmentLoginBinding.setLifecycleOwner(this);
+        loginViewModel.getUserInSharedPreference();
         fragmentLoginBinding.setLoginViewModel(loginViewModel);
         initLoginLiveData();
     }
 
-    /** subscribe to viewModel.
+    /**
+     * subscribe to viewModel.
      * Login is successful when user received
-     * */
+     */
     private void initLoginLiveData() {
         loginViewModel.getMutableUser().observe(this, new Observer<User>() {
             @Override

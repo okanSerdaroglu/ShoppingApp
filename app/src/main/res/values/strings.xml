@@ -15,4 +15,5 @@
     <string name="on_way">Yolda</string>
     <string name="waiting_for_approval">Onay Bekliyor</string>
     <string name="currency">TL</string>
+    <string name="ask_confirm">Çıkış yapmak istiyor musunuz?</string>
 </resources>

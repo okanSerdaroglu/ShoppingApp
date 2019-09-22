@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.okanserdaroglu.shoppingapp.R;
 import com.okanserdaroglu.shoppingapp.databinding.FragmentProductListBinding;
+import com.okanserdaroglu.shoppingapp.helper.StringHelper;
 import com.okanserdaroglu.shoppingapp.ui.Base.BaseFragment;
 import com.okanserdaroglu.shoppingapp.viewmodel.ProductItemViewModel;
 import com.okanserdaroglu.shoppingapp.viewmodel.ProductListViewModel;
@@ -11,6 +12,7 @@ import com.okanserdaroglu.shoppingapp.viewmodel.ProductListViewModel;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.List;
 
@@ -41,6 +43,14 @@ public class ProductListFragment extends BaseFragment {
             @Override
             public void onChanged(List<ProductItemViewModel> productItemViewModels) {
                 productListViewModel.setAdapter();
+            }
+        });
+
+        productListViewModel.getIsLogOutButtonClicked().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                NavHostFragment.findNavController(ProductListFragment.this)
+                        .navigate(R.id.action_productListFragment_to_confirmDialogFragment);
             }
         });
 

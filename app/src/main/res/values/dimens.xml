@@ -20,4 +20,5 @@
     <dimen name="text_size_40">40sp</dimen>
     <dimen name="text_size_12">12sp</dimen>
     <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_300">300dp</dimen>
 </resources>

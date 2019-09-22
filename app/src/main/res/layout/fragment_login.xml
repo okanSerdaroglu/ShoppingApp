@@ -60,7 +60,7 @@
             android:id="@+id/textInputLayoutPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginTop="@dimen/margin_16"
             app:errorMessage="@{loginViewModel.errorMessage}"
             app:isErrorVisible="@{loginViewModel.isPasswordError}"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayoutUsername"
@@ -73,6 +73,7 @@
                 android:drawableStart="@drawable/ic_lock"
                 android:hint="@string/password"
                 android:singleLine="true"
+                android:inputType="textPassword"
                 android:text="@={loginViewModel.password}" />
         </com.google.android.material.textfield.TextInputLayout>
 

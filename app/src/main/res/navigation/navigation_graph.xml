@@ -9,7 +9,7 @@
         android:id="@+id/splashFragment"
         android:name="com.okanserdaroglu.shoppingapp.ui.login.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -21,7 +21,7 @@
         android:id="@+id/loginFragment"
         android:name="com.okanserdaroglu.shoppingapp.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_productListFragment"
             app:destination="@id/productListFragment" />
@@ -30,9 +30,24 @@
         android:id="@+id/productListFragment"
         android:name="com.okanserdaroglu.shoppingapp.ui.order.ProductListFragment"
         android:label="fragment_product_list"
-        tools:layout="@layout/fragment_product_list" >
+        tools:layout="@layout/fragment_product_list">
         <action
             android:id="@+id/action_productListFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_productListFragment_to_confirmDialogFragment"
+            app:destination="@id/confirmDialogFragment"/>
+
     </fragment>
+    <dialog
+        android:id="@+id/confirmDialogFragment"
+        android:name="com.okanserdaroglu.shoppingapp.ui.Base.ConfirmDialogFragment"
+        android:label="ConfirmDialogFragment">
+        <action
+            android:id="@+id/action_confirmDialogFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_confirmDialogFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
+    </dialog>
 </navigation>

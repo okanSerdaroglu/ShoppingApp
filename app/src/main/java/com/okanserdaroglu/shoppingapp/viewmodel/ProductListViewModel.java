@@ -1,5 +1,7 @@
 package com.okanserdaroglu.shoppingapp.viewmodel;
 
+import android.view.View;
+
 import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -20,6 +22,7 @@ public class ProductListViewModel extends ViewModel implements OnOrderClickListe
 
     private MutableLiveData<List<ProductItemViewModel>> productViewModels = new MutableLiveData<>();
     private MutableLiveData<Integer> notifyItemPosition = new MutableLiveData<>();
+
     private MutableLiveData<Boolean> isLogOutButtonClicked = new MutableLiveData<>();
 
     private ProductListAdapter productListAdapter = new ProductListAdapter();
@@ -72,6 +75,9 @@ public class ProductListViewModel extends ViewModel implements OnOrderClickListe
         return productListAdapter;
     }
 
+    public MutableLiveData<Boolean> getIsLogOutButtonClicked() {
+        return isLogOutButtonClicked;
+    }
 
     @Override
     public void onOrderClick(int position) {
@@ -79,4 +85,11 @@ public class ProductListViewModel extends ViewModel implements OnOrderClickListe
         productListAdapter.notifyItemChanged(position);
     }
 
+    public void onOrdersButtonClick(View view) {
+        getOrderList();
+    }
+
+    public void onExitButtonClick(View view) {
+        isLogOutButtonClicked.setValue(true);
+    }
 }

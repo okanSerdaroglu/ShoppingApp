@@ -21,7 +21,9 @@ public class LoginViewModel extends ViewModel {
     private MutableLiveData<Boolean> isPasswordError = new MutableLiveData<>();
     private MutableLiveData<String> errorMessage = new MutableLiveData<>();
 
-    /** fragment observes this variable */
+    /**
+     * fragment observes this variable
+     */
     private MutableLiveData<User> mutableUser = new MutableLiveData<>();
 
     private boolean isRemember;
@@ -58,7 +60,9 @@ public class LoginViewModel extends ViewModel {
         return isPasswordError;
     }
 
-    /** checks this variable and save user info if it is true */
+    /**
+     * checks this variable and save user info if it is true
+     */
     public boolean isRemember() {
         return isRemember;
     }
@@ -67,7 +71,9 @@ public class LoginViewModel extends ViewModel {
         return mutableUser;
     }
 
-    /** button login Click. Check username and password */
+    /**
+     * button login Click. Check username and password
+     */
     public void onLoginButtonClick(View view) {
         isUsernameError.setValue(false);
         isPasswordError.setValue(false);
@@ -96,13 +102,23 @@ public class LoginViewModel extends ViewModel {
         mutableUser.setValue(user);
     }
 
-    /** save user info shared preferences if isRemember is true */
+    /**
+     * save user info shared preferences if isRemember is true
+     */
     public void saveUserInSharedPreferences() {
         SharedPreferenceHelper.getInstance().saveBoolean(SharedPreferenceHelper.IS_LOGIN, true);
         SharedPreferenceHelper.getInstance().saveBoolean(SharedPreferenceHelper.IS_REMEMBER, isRemember);
         if (isRemember) {
             SharedPreferenceHelper.getInstance().saveString(SharedPreferenceHelper.USERNAME, username.getValue());
             SharedPreferenceHelper.getInstance().saveString(SharedPreferenceHelper.PASSWORD, password.getValue());
+        }
+    }
+
+    public void getUserInSharedPreference() {
+        isRemember = SharedPreferenceHelper.getInstance().getBoolean(SharedPreferenceHelper.IS_REMEMBER);
+        if (SharedPreferenceHelper.getInstance().getBoolean(SharedPreferenceHelper.IS_REMEMBER)) {
+            username.setValue(SharedPreferenceHelper.getInstance().getString(SharedPreferenceHelper.USERNAME));
+            password.setValue(SharedPreferenceHelper.getInstance().getString(SharedPreferenceHelper.PASSWORD));
         }
     }
 }
