@@ -17,7 +17,7 @@ public abstract class BaseRecyclerViewAdapter<T, V extends BaseViewHolder<T>> ex
 
     private MutableLiveData<List<T>> items = new MutableLiveData<>();
 
-    public BaseRecyclerViewAdapter() {
+    BaseRecyclerViewAdapter() {
     }
 
     public void setItems(MutableLiveData<List<T>> items) {
@@ -35,6 +35,7 @@ public abstract class BaseRecyclerViewAdapter<T, V extends BaseViewHolder<T>> ex
 
     @Override
     public void onBindViewHolder(@NonNull V holder, int position) {
+        if (items.getValue() != null)
         holder.bind(items.getValue().get(position));
     }
 
@@ -50,7 +51,7 @@ public abstract class BaseRecyclerViewAdapter<T, V extends BaseViewHolder<T>> ex
 
     @Override
     public int getItemCount() {
-        return items.getValue().size();
+        return items.getValue() == null ? 0 : items.getValue().size();
     }
 
     @LayoutRes

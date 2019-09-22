@@ -1,5 +1,6 @@
 package com.okanserdaroglu.shoppingapp.viewmodel;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,11 +11,9 @@ import com.okanserdaroglu.shoppingapp.ui.order.adapter.ProductListAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProductListViewModel extends ViewModel {
 
@@ -22,15 +21,27 @@ public class ProductListViewModel extends ViewModel {
     private MutableLiveData<Boolean>isOrderButtonClicked = new MutableLiveData<>();
     private MutableLiveData<Boolean>isLogOutButtonClicked = new MutableLiveData<>();
 
-    private ProductListAdapter productListAdapter;
+    private ProductListAdapter productListAdapter = new ProductListAdapter();
 
     /** retrofit ile datayı çek. Sonra gelen orderList i productViewModel a dönüştür.
      *  */
     public void getOrderList() {
-        Observable<List<Order>> orderList = NetworkInstance.getInstance().getNetworkService().getOrderList();
-       /* Observable.fromArray(orderList)
-                .concatMap((Func1<List<Order>, Observable<List<ProductItemViewModel>>>) orderInfo -> Observable.just(getViewModel(orderList)))
-                .subscribe(this::setAdapter);*/
+
+        Call<List<Order>> orderCall = NetworkInstance.getInstance().getNetworkService().getOrderList();
+        orderCall.enqueue(new Callback<List<Order>>() {
+            @Override
+            public void onResponse(@Nullable Call<List<Order>> call, @Nullable  Response<List<Order>> response) {
+                if (response != null
+                        && response.body() != null) {
+                    getViewModel(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(@Nullable Call<List<Order>> call, @Nullable Throwable t) {
+
+            }
+        });
     }
 
     private void getViewModel(List<Order> orders){
@@ -44,10 +55,18 @@ public class ProductListViewModel extends ViewModel {
         // TODO: 2019-09-21 fragment buna observe olup set adapter metodunu çağıracak
     }
 
-    private void setAdapter(List<ProductListViewModel> productListViewModels) {
-        if (productListAdapter == null){
-            productListAdapter = new ProductListAdapter();
-        }
+    public void setAdapter() {
         productListAdapter.setItems(productViewModels);
     }
+
+    public MutableLiveData<List<ProductItemViewModel>> getProductViewModels() {
+        return productViewModels;
+    }
+
+    public ProductListAdapter getProductListAdapter() {
+        return productListAdapter;
+    }
+
+
+
 }

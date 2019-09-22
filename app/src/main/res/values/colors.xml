@@ -11,5 +11,9 @@
     <color name="colorDarkGrey">#424242</color>
     <color name="colorYellow">#F9A825</color>
     <color name="colorSoftGrey">#E0E0E0</color>
+    <color name="colorRedWait">#DA3F41</color>
+    <color name="colorGreenOnWay">#67AB5B</color>
+    <color name="colorOrangePrepare">#F09236</color>
+    <color name="colorGrayExpand">#E1E3E4</color>
 
 </resources>
